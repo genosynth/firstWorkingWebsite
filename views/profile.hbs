@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<title>My Website</title>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="active" href="#">Home</a>
+  <a href="/about">About</a>
+  <a href="/contact">Contact</a>
+  <a href="/register">Register</a>
+  <div  class="login-container">
+    
+      <form id="status" action="/login" method="POST">
+        <input type="text" placeholder="Username" name="username">
+        <input type="text" placeholder="Password" name="password">
+        <button type="submit">Login</button>
+      </form>
+    
+    {{#if status}}
+        <h4>{{status}}</h4>
+      
+    {{/if}}
+
+  </div>
+</div>
+
+<div style="padding-left:16px">
+  <h2 id="username">{{#if name}} {{name}} 's Profile {{/if}} </h2>
+  <p>This is your personal profile.</p>
+  <p>Post stuff here.</p>
+  <div id="image-container"></div>
+
+    <form action='/imageupload' method="POST" enctype="multipart/form-data" >
+            <input type='file' accept="image/*" name="image" />
+            <button type="submit" >Upload image</button>
+        </form>
+
+{{#if message}}
+        <h4>{{message}}</h4>
+      
+        {{/if}}
+</div>
+{{#if status}}
+    <script>   
+        
+        document.getElementById('status').outerHTML = "<form action='/logout' method='POST'><button>Log Out</button></form>"
+     
+    </script>           
+{{/if}}
+   
+  
+
+
+
+</body>
+</html>
